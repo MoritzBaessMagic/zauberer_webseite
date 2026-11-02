@@ -429,11 +429,50 @@
     </main>
     <footer><span>© <span id="year"></span> Moritz Bäß</span> <a href="impressum.html">Impressum</a><a
             href="datenschutz.html">Datenschutz</a></footer>
-    <script>
-        const menuButton = document.getElementById('menuButton'); const menu = document.getElementById('menu'); menuButton.addEventListener('click', () => { const open = menu.classList.toggle('open'); menuButton.setAttribute('aria-expanded', String(open)) }); menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); menuButton.setAttribute('aria-expanded', 'false') })); document.addEventListener('keydown', e => { if (e.key === 'Escape') { menu.classList.remove('open'); menuButton.setAttribute('aria-expanded', 'false') } }); document.getElementById('year').textContent = new Date().getFullYear();
-        // Basic sanity checks for the main interactions and anchors.
-        console.assert(menuButton && menu, 'Menu elements exist'); console.assert(document.querySelectorAll('main .section').length === 5, 'All five content sections exist'); console.assert([...menu.querySelectorAll('a')].every(a => document.querySelector(a.getAttribute('href'))), 'All navigation anchors resolve');
-    </script>
+    
+<script>
+    const menuButton = document.getElementById('menuButton');
+    const menu = document.getElementById('menu');
+
+    // Menü öffnen und schließen
+    menuButton.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('open');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Menü schließen, wenn ein Menüpunkt angeklickt wird
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMenu();
+        });
+    });
+
+    // Menü schließen, wenn außerhalb geklickt wird
+    document.addEventListener('click', (event) => {
+        if (!menu.contains(event.target) &&
+            !menuButton.contains(event.target)) {
+            closeMenu();
+        }
+    });
+
+    // Menü mit Escape-Taste schließen
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeMenu();
+        }
+    });
+
+    // Gemeinsame Funktion zum Schließen
+    function closeMenu() {
+        menu.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+    }
+
+    // Aktuelles Jahr im Footer anzeigen
+    document.getElementById('year').textContent =
+        new Date().getFullYear();
+</script>
+
 </body>
 
 </html>

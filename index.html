@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Moritz Bäß | Zauberkunst</title>
+    <meta name="description"
+      content="Moritz Bäß – Zauberer in Oldenburg, Bremen, Düsseldorf, Köln, Aachen und Umgebung.
+      Close-up-Zauberei, Table Hopping und Shows für
+      Hochzeiten, Firmenfeiern und private Veranstaltungen.">
+    <style>
+        /* Farben und Schrift kannst du hier zentral ändern. */
+        :root {
+            --beige: #f5f0e8;
+            --red: #a5222b;
+            --ink: #24201e;
+            --soft: #e8dfd3;
+            --font: Arial, Helvetica, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: var(--beige);
+            color: var(--ink);
+            font-family: var(--font);
+            line-height: 1.7;
+        }
+
+        a { color: inherit; }
+
+        /* Kopfzeile */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(245, 240, 232, .96);
+            border-bottom: 1px solid var(--soft);
+            backdrop-filter: blur(10px);
+        }
+
+        .bar {
+            max-width: 1100px;
+            margin: auto;
+            min-height: 74px;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 750;
+            font-size: 1.15rem;
+            letter-spacing: .02em;
+        }
+
+        .mark {
+            color: var(--red);
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .menu-button {
+            background: none;
+            border: 1px solid var(--red);
+            color: var(--red);
+            border-radius: 4px;
+            padding: 9px 15px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .menu-button:hover,
+        .menu-button:focus-visible {
+            background: var(--red);
+            color: white;
+        }
+
+        nav {
+            display: none;
+            position: absolute;
+            right: max(24px, calc((100vw - 1052px)/2));
+            top: calc(100% + 5px);
+            padding: 14px;
+            background: var(--beige);
+            border: 1px solid var(--soft);
+            box-shadow: 0 14px 30px #24130e1c;
+            min-width: 200px;
+        }
+
+        nav.open { display: grid; }
+
+        nav a {
+            text-decoration: none;
+            padding: 9px 12px;
+        }
+
+        nav a:hover { color: var(--red); }
+
+        /* Seitenbreite */
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 24px;
+        }
+
+        .hero { padding: 30px 0 70px; }
+
+        /* Das Banner folgt dem echten Seitenverhältnis des Fotos.
+           Keine fixe Höhe, kein cover und kein absolut positioniertes Bild. */
+        .hero-photo {
+            width: 100%;
+            height: auto;
+            background: transparent;
+        }
+
+        .hero-photo img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .hero-caption {
+            margin-top: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .hero-caption h1 {
+            margin: 0;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.2;
+        }
+
+        .hero-caption span {
+            color: var(--red);
+            font-size: .92rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        /* Abschnitte: abwechselnd Text/Bild oder Bild/Text */
+        .section {
+            padding: 90px 0;
+            border-top: 1px solid #a5222b55;
+            scroll-margin-top: 90px;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: clamp(28px, 6vw, 90px);
+            align-items: center;
+        }
+
+        .split.flip .visual { order: -1; }
+
+        #stand-up { scroll-margin-top: 100px; }
+
+        .eyebrow {
+            color: var(--red);
+            font-size: .85rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .section h2 {
+            font-size: clamp(2rem, 4vw, 3.1rem);
+            line-height: 1.15;
+            margin: 10px 0 24px;
+            font-weight: 650;
+        }
+
+        .section p {
+            max-width: 53ch;
+            color: #514a44;
+        }
+
+        /* Einheitliche Bilddarstellung in ALLEN Abschnitten:
+           Originalverhältnis beibehalten, keine Hintergründe oder Ränder. */
+        .visual {
+            width: 100%;
+            height: auto;
+            min-height: 0;
+            background: transparent;
+            border: none;
+            padding: 0;
+            overflow: visible;
+        }
+
+        .visual img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            object-fit: contain;
+            border: none;
+            border-radius: 0;
+        }
+
+        .diamond {
+            color: var(--red);
+            margin-right: 8px;
+        }
+
+        /* Kontakt */
+        .contact {
+            text-align: center;
+            padding-bottom: 110px;
+        }
+
+        .contact p { margin: 0 auto 26px; }
+
+        .contact-link {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            text-decoration: none;
+            padding: 13px 27px;
+            font-weight: 700;
+        }
+
+        .contact-link:hover { background: #781820; }
+
+        footer {
+            border-top: 1px solid var(--soft);
+            padding: 26px 24px;
+            text-align: center;
+            font-size: .88rem;
+            color: #6c625a;
+        }
+
+        footer a { margin: 0 10px; }
+
+        .small {
+            font-size: .86rem;
+            color: #75685f;
+        }
+
+        /* Gästestimmen */
+        .testimonials {
+            max-width: 760px;
+            margin: 50px auto 0;
+        }
+
+        .testimonial {
+            margin: 0;
+            padding: 36px 0;
+            text-align: center;
+            border-bottom: 1px solid #d8c9bd;
+        }
+
+        .testimonial:last-child { border-bottom: none; }
+
+        .testimonial .diamond {
+            color: var(--red);
+            font-size: 24px;
+        }
+
+        .testimonial p {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            line-height: 1.6;
+            margin: 18px 0;
+        }
+
+        .testimonial cite {
+            font-size: .85rem;
+            color: #766d66;
+            font-style: normal;
+        }
+
+        /* Auf Handys stehen Bild und Text untereinander. */
+        @media (max-width: 700px) {
+            .bar {
+                min-height: 66px;
+                padding: 10px 18px;
+            }
+
+            main { padding: 0 18px; }
+            .hero { padding: 18px 0 50px; }
+            .hero-caption { display: block; }
+
+            .hero-caption span {
+                display: block;
+                margin-top: 8px;
+            }
+
+            .section { padding: 64px 0; }
+
+            .split {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .split.flip .visual { order: initial; }
+            nav { right: 18px; }
+            .contact { padding-bottom: 70px; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="bar"><a class="brand" href="#start"><span class="mark" aria-hidden="true">♦</span><span>Moritz
+                    Bäß | Magier</span></a><button class="menu-button" id="menuButton" aria-controls="menu" aria-expanded="false"
+                type="button">Menü ☰</button>
+            <nav id="menu" aria-label="Seitennavigation">
+                <a href="#ueber-mich">Über mich</a>
+                <a href="#table-hopping">Table Hopping</a>
+                <a href="#stand-up">Stand-up</a>
+                <a href="#Wohnzimmerzauberei">Wohnzimmerzauberei</a>
+                <a href="#stimmen">Stimmen</a>
+                <a href="#kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero" id="start">
+            <div class="hero-photo">
+                <img src="pictures/Karten_CloseUp.png" alt="Moritz Bäß bei einem Zauberauftritt">
+            </div>
+            <div class="hero-caption">
+                <h1>Zauberei, die Spaß macht.</h1><span>Zauberkunst vom feinsten</span>
+            </div>
+        </section>
+        <section class="section" id="ueber-mich">
+            <div class="split">
+                <div>
+                    <div class="eyebrow"><span class="diamond">♦</span>01 / Über mich</div>
+                    <h2>Hallo, ich bin Moritz.</h2>
+                    <p>Vor 18 Jahren habe ich meinen ersten Kartentrick gelernt. Seitdem lässt mich die Zauberei nicht mehr los. Und mit dieser Leidenschaft möchte ich euch begeistern.
+                    Ob eine Münze hinter dem Ohr oder eine gefundene Karte, im Mittelpunkt steht für mich immer das Publikum. Denn ich glaube, dass die Zauberei nicht in meinen Händen entsteht, sondern in den Köpfen der Zuschauer.
+                        Da Staunen verbindet, möchte ich Momente erschaffen, die in Erinnerung bleiben. Auf deiner Firmenfeier, Hochzeit oder privaten Feier.</p>
+                </div>
+                <div class="visual">
+                    <img src="pictures/Polterabend.jpeg" alt="Moritz Bäß bei einer Veranstaltung">
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="table-hopping">
+            <div class="split flip">
+                <div>
+                    <div class="eyebrow">02 / Table Hopping</div>
+                    <h2>Von Tisch zu Tisch.</h2>
+                    <p>Lockere, persönliche Zauberkunst direkt zwischen deinen Gästen – etwa beim Empfang, zwischen den Gängen oder auf einer Firmenfeier.</p>
+                </div>
+                <div id="stand-up">
+                    <div class="eyebrow">03 / Stand-up</div>
+                    <h2>Ein Erlebnis für alle.</h2>
+                    <p>Eine gemeinsame Show mit Staunen, Humor und vor allem Zauberei. Ideal als Programmpunkt für Feiern und
+                        Veranstaltungen.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="Wohnzimmerzauberei">
+            <div class="split flip">
+                <div>
+                    <div class="eyebrow">04 / Wohnzimmerkonzert</div>
+                    <h2>Wie ein Wohnzimmerkonzert. Nur mit Zauberei.</h2>
+                    <p>Du möchtest deinen Gästen ein besonderes Erlebnis bieten? Dann lade sie zu einer privaten Zaubershow zu dir nach Hause ein.
+                        In gemütlicher Atmosphäre entsteht ein Abend voller Staunen, Lachen und überraschender Momente.
+                        Ganz persönlich, direkt vor deinen Augen und mit dem besonderen Charme eines Wohnzimmerkonzerts.</p>
+                        
+                        
+                </div>
+                <div class="visual">
+                    <img src="pictures/Plakat_gemischte_Gefuehle_ohne_adresse.jpeg" alt="Stand-up Zaubershow">
+                </div>
+            </div>
+        </section>
+
+
+        
+
+        <section class="section" id="stimmen">
+            <div class="eyebrow">05 / Stimmen aus dem Publikum</div>
+            <h2>Was in Erinnerung bleibt.</h2>
+
+            <div class="testimonials">
+                <blockquote class="testimonial">
+                    <span class="diamond">♦</span>
+                    <p>
+                        „Ich habe Moritz auf einer Hochzeit erlebt und ihn Jahre später für einen Kindergeburtstag engagiert. Mein Sohn will jetzt Zauberer werden.“
+                    </p>
+                    <cite>— Lars</cite>
+                </blockquote>
+
+                <blockquote class="testimonial">
+                    <span class="diamond">♦</span>
+                    <p>
+                        „Noch heute sprechen mich Gäste auf Moritz’ Auftritt bei unserer Hochzeit an. Er hat Menschen, die sich zuvor nicht kannten, durch gemeinsames Staunen und Lachen an einem Tisch zusammengebracht. Meine unterschriebene Karte trage ich immer noch bei mir.“
+                    </p>
+                    <cite>— Simon</cite>
+                </blockquote>
+
+                <blockquote class="testimonial">
+                    <span class="diamond">♦</span>
+                    <p>
+                        „Moritz hat uns mit seiner Show ein Lachen ins Gesicht gezaubert und unsere Weihnachtsfeier der BSG zu einem wundervollen Abend gemacht.“
+                    </p>
+                    <cite>— Otto</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <section class="section contact" id="kontakt">
+            <div class="eyebrow"><span class="diamond">♦</span>06 / Kontakt</div>
+            <h2>Du planst ein Event?</h2>
+            <p>Schreib mir gern, was du vorhast. Ich freue mich auf deine Anfrage.</p><a class="contact-link"
+                href="mailto:moritz.baess@gmail.com?subject=Anfrage%20Zauberkunst">E-Mail schreiben ↗</a>
+            <p class="small">Die Schaltfläche öffnet dein E-Mail-Programm.</p>
+        </section>
+    </main>
+    <footer><span>© <span id="year"></span> Moritz Bäß</span> <a href="impressum.html">Impressum</a><a
+            href="datenschutz.html">Datenschutz</a></footer>
+    <script>
+        const menuButton = document.getElementById('menuButton'); const menu = document.getElementById('menu'); menuButton.addEventListener('click', () => { const open = menu.classList.toggle('open'); menuButton.setAttribute('aria-expanded', String(open)) }); menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); menuButton.setAttribute('aria-expanded', 'false') })); document.addEventListener('keydown', e => { if (e.key === 'Escape') { menu.classList.remove('open'); menuButton.setAttribute('aria-expanded', 'false') } }); document.getElementById('year').textContent = new Date().getFullYear();
+        // Basic sanity checks for the main interactions and anchors.
+        console.assert(menuButton && menu, 'Menu elements exist'); console.assert(document.querySelectorAll('main .section').length === 5, 'All five content sections exist'); console.assert([...menu.querySelectorAll('a')].every(a => document.querySelector(a.getAttribute('href'))), 'All navigation anchors resolve');
+    </script>
+</body>
+
+</html>
